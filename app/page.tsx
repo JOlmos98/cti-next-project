@@ -1,46 +1,9 @@
 "use client";
 
-//import Image from "next/image";
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
-export default function Home() {
-
-  const [userId, setUserId] = useState("");
-  const [message, setMessage] = useState("");
-  const router=useRouter();
-
-  const handleSubmit=async(e:React.FormEvent)=>{
-    e.preventDefault();
-    const res=await fetch("/api/verifyUserId", {
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json",
-      },
-      body:JSON.stringify({userId}),
-    });
-    const data=await res.json();
-    //if (res.ok){
-      //router.push(`/general/userIn?userId=${encodeURIComponent(userId)}`);
-
-      //Con esto redirigimos a UserIn, esto queda obsoleto porque ahora importamos next/navigation
-      //router.push( 
-        //pathname: './(general)/userIn/page.tsx',
-        //query: {name:data.userName}
-      //);
-    //} else {
-      //setMessage(data.message);
-    //}
-    
-    if (res.ok) {
-      alert("El ID es correcto: "+userId+" "+typeof(userId)); // Ventana emergente si el ID es correcto
-      router.push(`/userData?userId=${encodeURIComponent(userId)}`);
-      console.log("userId:", userId);
-
-    } else {
-      alert("ID inválido"); // Ventana emergente si el ID no es válido
-    }
-  };
+export default async function Home() {
 
 // Intentando que la rama server-actions funcione.
 // Actualizamos rama. 
