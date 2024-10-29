@@ -1,4 +1,47 @@
-import prisma from "@/lib/prisma";
+// app/api/users/route.ts
+
+import { createUser, deleteUser } from "@/lib/actions"; // Asegúrate de que la ruta sea correcta
+
+// Método POST: Crear un usuario
+export async function POST(req: Request) {
+    const formData = await req.formData(); // Obtener los datos del formulario
+    try {
+        const result = await createUser(formData);
+        return new Response(JSON.stringify(result), { status: 201 }); // Devolver respuesta de éxito
+    } catch (error) {
+        return new Response(error.message, { status: 400 }); // Devolver error si ocurre
+    }
+}
+
+// Método DELETE: Eliminar un usuario
+export async function DELETE(req: Request) {
+    const { searchParams } = new URL(req.url);
+    const idString = searchParams.get("id");
+    const id = parseInt(idString as string, 10);
+
+    if (isNaN(id)) {
+        return new Response("ID inválido", { status: 400 });
+    }
+
+    try {
+        const result = await deleteUser(id);
+        return new Response(JSON.stringify(result), { status: 200 }); // Devolver respuesta de éxito
+    } catch (error) {
+        return new Response("Usuario no encontrado", { status: 404 }); // Manejar el error de usuario no encontrado
+    }
+}
+
+
+
+
+
+
+
+
+
+//Antiguo route.ts sin usar actions y suponiendo que usabamos componentes del lado del cliente en page.tsx, es decir, basura.
+
+/*import prisma from "@/lib/prisma";
 
 // Método POST: //
 export async function POST(req: Request) {
@@ -43,3 +86,4 @@ export async function DELETE(req: Request) {
         return new Response("Usuario no encontrado", { status: 404 });
     }
 }
+*/
