@@ -43,6 +43,7 @@ export default function Home() {
   };
 
 // Intentando que la rama server-actions funcione.
+// Actualizamos rama. 
   //HTML que define la web: [10px_1fr_10px]
   return (
     <div className="grid grid-rows-[1fr_auto] items-center justify-items-center m-5 font-[family-name:var(--font-geist-sans)]">
