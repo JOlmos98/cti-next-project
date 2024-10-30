@@ -1,61 +1,34 @@
-// app/UserIn.tsx
-"use client";
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { PencilIcon } from "@primer/octicons-react"
+// app/userData/page.tsx
+import { getUserAndConfigData } from "@/lib/actions";
+import { PencilIcon } from "@primer/octicons-react";
+import { notFound } from "next/navigation";
 
-export default function UserIn() {
-    const [userData, setUserData] = useState<any>(null); // Cambiado a userData
-    const [configData, setConfigData]=useState<any>(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
+type UserDataProps = {
+    searchParams: { userId: string };
+};
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const userId = urlParams.get("userId"); // Obtener el userId de la query
-
-            if (userId) {
-                try {
-                    const response = await fetch(`/api/getUserData?userId=${userId}`); // Cambiado a la nueva API
-                    const response2=await fetch(`/api/getConfigData?configId=${userId}`);
-                    if (!response.ok) {
-                        throw new Error("Error al obtener los datos del usuario."); // Mensaje de error
-                    }
-                    const data = await response.json(); // Parsear la respuesta JSON
-                    const data2=await response2.json();
-                    setUserData(data); // Establecer los datos del usuario
-                    setConfigData(data2);
-                } catch (e: any) {
-                    setError(e.message); // Manejar errores
-                } finally {
-                    setLoading(false); // Cambiar el estado de carga
-                }
-            } else {
-                setError("ID de usuario no proporcionado."); // Manejar caso sin userId
-                setLoading(false); // Cambiar el estado de carga
-            }
-        };
-
-        fetchUserData();
-    }, []);
-
-    if (loading) {
-        return <div>Cargando...</div>;
+export default async function UserData({ searchParams }: UserDataProps) {
+    const userId = parseInt(searchParams.userId, 10);
+    if (isNaN(userId)) {
+        return notFound(); // Mostrar una página de error si no hay un userId válido
     }
 
-    if (error) {
-        return <div>Error: {error}</div>;
+    // Llamada del lado del servidor para obtener los datos del usuario
+    let userData;
+    try {
+        userData = await getUserAndConfigData(userId);
+    } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : "Ocurrió un error inesperado.";
+        return <div>Error: {errorMessage}</div>;
     }
+    type UserParameters = 'calefaccionOffset' | 'calefaccionMinima' | 'calefaccionMaxima' | 'rango';
 
-    const router=useRouter();
-
-    const handleEdit = (parameter: string) => {
-        // Redirigir a la página changeValue con un parámetro en la query
-        const userId = userData.id; // O de donde estés obteniendo el userId
-        router.push(`/changeValue?parameter=${encodeURIComponent(parameter)}&userId=${encodeURIComponent(userId)}`);
-    }; //Parece que el handleEdit ya va a funcionar pasando el parámetro y el userId a la página changeValue
-
+    const handleEditUrl = (parameter: UserParameters) => {
+        const value = userData[parameter]; // Se puede acceder sin error de tipo
+        return `/changeValue?parameter=${encodeURIComponent(parameter)}&userId=${encodeURIComponent(userData.id)}&value=${encodeURIComponent(value)}`;
+    };
+    
+    
     return (
         <div className="grid grid-rows-[1fr_auto] items-center gap-14 justify-items-center m-auto font-[family-name:var(--font-geist-sans)]">
             <main className="flex flex-col gap-14 row-start-2 items-center sm:items-start">
@@ -73,7 +46,9 @@ export default function UserIn() {
                                 <td className="p-1 text-xl">{userData.calefaccionOffset}</td>
                                 <td className="p-0 text-xl">Cº</td>
                                 <td>
-                                    <button type="button" onClick={() => handleEdit('calefaccionOffset')}  className="flex bg-blue-600 bg-opacity-30 p-2 mx-auto rounded-xl text-1xl"><PencilIcon className="m-0"/></button>
+                                    <a href={handleEditUrl('calefaccionOffset')} className="flex bg-blue-600 bg-opacity-30 p-2 mx-auto rounded-xl text-1xl">
+                                        <PencilIcon className="m-0"/>
+                                    </a>
                                 </td>
                             </tr>
                             <tr className="border-b-2 border-gray-500">
@@ -81,7 +56,9 @@ export default function UserIn() {
                                 <td className="p-1 text-xl">{userData.calefaccionMinima}</td>
                                 <td className="p-0 text-xl">%</td>
                                 <td>
-                                    <button type="button" onClick={() => handleEdit('calefaccionMinima')}  className="flex bg-blue-600 bg-opacity-30 p-2 mx-auto rounded-xl text-1xl"><PencilIcon className="m-0"/></button>
+                                    <a href={handleEditUrl('calefaccionMinima')} className="flex bg-blue-600 bg-opacity-30 p-2 mx-auto rounded-xl text-1xl">
+                                        <PencilIcon className="m-0"/>
+                                    </a>
                                 </td>
                             </tr>
                             <tr className="border-b-2 border-gray-500">
@@ -89,7 +66,9 @@ export default function UserIn() {
                                 <td className="p-1 text-xl">{userData.calefaccionMaxima}</td>
                                 <td className="p-0 text-xl">%</td>
                                 <td>
-                                    <button type="button" onClick={() => handleEdit('calefaccionMaxima')}  className="flex bg-blue-600 bg-opacity-30 p-2 mx-auto rounded-xl text-1xl"><PencilIcon className="m-0"/></button>
+                                    <a href={handleEditUrl('calefaccionMaxima')} className="flex bg-blue-600 bg-opacity-30 p-2 mx-auto rounded-xl text-1xl">
+                                        <PencilIcon className="mr-0"/>
+                                    </a>
                                 </td>
                             </tr>
                             <tr className="border-b-2 border-gray-500">
@@ -97,7 +76,9 @@ export default function UserIn() {
                                 <td className="p-1 text-xl">{userData.rango}</td>
                                 <td className="p-0 text-xl">Cº</td>
                                 <td>
-                                    <button type="button" onClick={() => handleEdit('rango')}  className="flex bg-blue-600 bg-opacity-30 p-2 mx-auto rounded-xl text-1xl"><PencilIcon className="m-0"/></button>
+                                    <a href={handleEditUrl('rango')} className="flex bg-blue-600 bg-opacity-30 p-2 mx-auto rounded-xl text-1xl">
+                                        <PencilIcon className="m-0"/>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>
@@ -114,10 +95,8 @@ export default function UserIn() {
                             ))}
                         </ul>
                     ) : (
-                        <p className="text-left text-blue-600">No hay configuraciones disponibles. </p>
+                        <p className="text-left text-blue-600">No hay configuraciones disponibles.</p>
                     )}
-
-                    <h2 className="text-2xl mt-8 mb-4 font-semibold text-blue-900">Configuraciones:</h2>    
                 </div>
             </main>
         </div>

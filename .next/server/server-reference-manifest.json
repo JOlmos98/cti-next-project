@@ -1,5 +1,46 @@
 {
-  "node": {},
+  "node": {
+    "10972f2327d1ccf325654a475825fcf173dc81e3": {
+      "workers": {
+        "app/(general)/userData/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fdesarrollo1%2Fcti-next-project-server-actions%2Flib%2Factions.ts%22%2C%5B%22findUserById%22%2C%22deleteUser%22%2C%22getUserAndConfigData%22%2C%22updateUser%22%2C%22createUser%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/(general)/userData/page": "rsc"
+      }
+    },
+    "3f32cae454aba9ac27724c08aa241ca5adb8c320": {
+      "workers": {
+        "app/(general)/userData/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fdesarrollo1%2Fcti-next-project-server-actions%2Flib%2Factions.ts%22%2C%5B%22findUserById%22%2C%22deleteUser%22%2C%22getUserAndConfigData%22%2C%22updateUser%22%2C%22createUser%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/(general)/userData/page": "rsc"
+      }
+    },
+    "90425c0abcbd47775506f850251f7a57268a1d44": {
+      "workers": {
+        "app/(general)/userData/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fdesarrollo1%2Fcti-next-project-server-actions%2Flib%2Factions.ts%22%2C%5B%22findUserById%22%2C%22deleteUser%22%2C%22getUserAndConfigData%22%2C%22updateUser%22%2C%22createUser%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/(general)/userData/page": "rsc"
+      }
+    },
+    "92dadad473ea8987b5fefff1f4cfc08a99cf3508": {
+      "workers": {
+        "app/(general)/userData/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fdesarrollo1%2Fcti-next-project-server-actions%2Flib%2Factions.ts%22%2C%5B%22findUserById%22%2C%22deleteUser%22%2C%22getUserAndConfigData%22%2C%22updateUser%22%2C%22createUser%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/(general)/userData/page": "rsc"
+      }
+    },
+    "d34c00cbc1f8cf47d0bc1adc122dbf79ee7fa2b3": {
+      "workers": {
+        "app/(general)/userData/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fdesarrollo1%2Fcti-next-project-server-actions%2Flib%2Factions.ts%22%2C%5B%22findUserById%22%2C%22deleteUser%22%2C%22getUserAndConfigData%22%2C%22updateUser%22%2C%22createUser%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/(general)/userData/page": "rsc"
+      }
+    }
+  },
   "edge": {},
-  "encryptionKey": "yNlPEAiH98C2zSEYhQ+HbAFCBPhTgsa/LVx+saCWLnw="
+  "encryptionKey": "0z9Qq5FGDe4mdAmixGA0Y0ajg54P9+gWRwuEQFI2nNo="
 }

@@ -2,6 +2,37 @@
 
 import prisma from "@/lib/prisma";
 
+// Método para VERIFICAR si existe el usuario: //
+export async function findUserById(userId: number) {
+    try {
+        return await prisma.user.findUnique({
+            where: { id: userId },
+        });
+    } catch (error) {
+        alert("Error al encontrar el usuario: " + error);
+        console.error("Error al encontrar el usuario:", error);
+        throw new Error("Error al encontrar el usuario");
+    } 
+}
+
+// alert("Usuario correcto: " + userId);
+
+// Nueva función en actions.ts
+// Método para obtener los DATOS del usuario: //
+export async function getUserAndConfigData(userId: number) {
+    const user = await prisma.user.findUnique({
+        where: { id: userId },
+        include: { configs: true }, // Incluye las configuraciones del usuario
+    });
+
+    if (!user) {
+        throw new Error("Usuario no encontrado.");
+    }
+
+    return user;
+}
+
+
 // Método de CREATE: //
 export async function createUser(data:FormData){
     const name=data.get("name") as string;
@@ -35,32 +66,58 @@ export async function deleteUser(id:number){ //El string daba el error, es numbe
 }
 
 // Método de UPDATE: //
-export async function updateUser(id:number,data:FormData){
-    const name=data.get("name") as string|undefined;
-    const calefaccionOffset=parseFloat(data.get("calefaccionOffset") as string) || 0;
-    const calefaccionMinima=parseFloat(data.get("calefaccionMinima") as string) || 1;
-    const calefaccionMaxima=parseFloat(data.get("calefaccionMaxima") as string) || 100;
-    const rango=parseFloat(data.get("rango") as string) || 10;
-
-    if (!name){
-        throw new Error("El nombre es obligatorio");
+export async function updateUser(id: number, data: FormData) {
+    console.log("FormData en updateUser:", Array.from(data.entries()));
+    
+    // Obtener todos los pares clave-valor del FormData
+    const entries = Array.from(data.entries());
+    const updateData: { [key: string]: number } = {};
+    
+    // Procesar cada entrada del FormData
+    for (const [parameterName, valueString] of entries) {
+        // Convertir el valor a número
+        const value = parseFloat(valueString as string);
+        
+        // Logs para debugging
+        console.log({
+            parameterName,
+            rawValue: valueString,
+            parsedValue: value
+        });
+        
+        // Verificar si el valor es válido
+        if (isNaN(value)) {
+            console.log(`Error en lib/actions.ts: El valor proporcionado para ${parameterName} no es un número válido.`);
+            throw new Error(`Error en lib/actions.ts: El valor proporcionado para ${parameterName} no es un número válido.`);
+        }
+        
+        // Añadir al objeto de actualización
+        updateData[parameterName] = value;
     }
-
-    await prisma.user.update({
-        where:{
-            id,
-        },
-        data:{
-            name,
-            calefaccionOffset,
-            calefaccionMinima,
-            calefaccionMaxima,
-            rango,
-        },
-    });
-
-    return {success:true};
+    
+    // Verificar si hay datos para actualizar
+    if (Object.keys(updateData).length === 0) {
+        console.log("Error: No hay datos para actualizar");
+        throw new Error("No hay datos para actualizar");
+    }
+    
+    // Realizar la actualización en la base de datos
+    try {
+        await prisma.user.update({
+            where: { id },
+            data: updateData,
+        });
+        
+        return { success: true };
+    } catch (error) {
+        console.error("Error al actualizar el usuario:", error);
+        throw new Error("Error al actualizar el usuario en la base de datos");
+    }
 }
+
+
+// throw new Error("El valor proporcionado no es un número válido."), console.log("El valor proporcionado no es un número válido.", id, value, parameterValue);
+
 
 /*
 model User {

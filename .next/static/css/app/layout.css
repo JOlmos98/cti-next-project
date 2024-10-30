@@ -558,6 +558,9 @@ video {
 .ml-40 {
   margin-left: 10rem;
 }
+.mr-0 {
+  margin-right: 0px;
+}
 .mr-2 {
   margin-right: 0.5rem;
 }
@@ -578,6 +581,9 @@ video {
 }
 .grid {
   display: grid;
+}
+.hidden {
+  display: none;
 }
 .size-6 {
   width: 1.5rem;

@@ -1,17 +1,41 @@
 // app/api/users/route.ts
 
-import { createUser, deleteUser } from "@/lib/actions"; // Asegúrate de que la ruta sea correcta
+import { createUser, deleteUser, findUserById } from "@/lib/actions"; // Asegúrate de que la ruta sea correcta
+import { NextResponse } from "next/server";
 
-// Método POST: Crear un usuario
+// /userData?userId=${encodeURIComponent(userId)}
+// const errorMessage = error instanceof Error ? error.message : "Ocurrió un error inesperado.";
+
+// POST: //
+
 export async function POST(req: Request) {
-    const formData = await req.formData(); // Obtener los datos del formulario
+    const formData = await req.formData();
+    const userId = formData.get("userId")?.toString();
+
+    if (!userId || isNaN(Number(userId))) {
+        return NextResponse.json({ error: "ID de usuario inválido" }, { status: 400 });
+    }
+
+    const userIdInt = parseInt(userId, 10);
     try {
-        const result = await createUser(formData);
-        return new Response(JSON.stringify(result), { status: 201 }); // Devolver respuesta de éxito
+        const user = await findUserById(userIdInt);
+        if (user) {
+            // Modifica esta línea para usar la URL absoluta
+            const url = new URL(req.url);
+            return NextResponse.redirect(`${url.origin}/userData?userId=${userIdInt}`);
+        } else {
+            return NextResponse.json({ error: "Usuario no encontrado" }, { status: 404 });
+        }
     } catch (error) {
-        return new Response(error.message, { status: 400 }); // Devolver error si ocurre
+        console.error("Error en la búsqueda del usuario:", error);
+        const errorMessage = error instanceof Error ? error.message : "Ocurrió un error inesperado.";
+        return NextResponse.json({ error: "Error del servidor: " + errorMessage }, { status: 500 });
     }
 }
+
+
+
+
 
 // Método DELETE: Eliminar un usuario
 export async function DELETE(req: Request) {

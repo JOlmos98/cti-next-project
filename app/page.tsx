@@ -1,4 +1,3 @@
-import { redirect } from "next/navigation";
 
 export default async function Home() {
 
@@ -11,18 +10,19 @@ export default async function Home() {
       <main className="flex flex-col gap-6 row-start-2 items-center sm:items-start">
         <span className="flex text-3xl">Bienvenido a la interfaz de usuario de [insertar nombre de hardware].</span>
         <span className="flex text-3xl">Introduce tu número de usuario:</span>
-        <form action="/api/users" method="POST" className="flex justify-center w-full">
+        <form action="/api/users" method="POST" className="flex justify-center m-2">
           <input 
             type="text" 
             name="userId"
-            className="text-black block mx-auto p-3 rounded-3xl border-slate-700 border-2" 
+            className="text-black block mx-auto p-1 rounded-3xl border-slate-700 border-2" 
             id="userId" 
             placeholder="Inserta tu número de usuario" 
             required 
           />
+          <br />
           <button type="submit" className="flex bg-blue-300 bg-opacity-30 p-4 mx-auto rounded-3xl text-3xl">Log in</button>
         </form>
-        
+
         <div className="flex justify-between items-center">
           <div className="flex flex-col gap-4 justify-center">
             <a className="flex bg-blue-300 bg-opacity-30 p-5 m-0 rounded-3xl text-5xl" href="/howtouse">How To Use</a>
