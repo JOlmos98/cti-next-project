@@ -46,7 +46,7 @@ export default async function UserData({ searchParams }: UserDataProps) {
                                 <td className="p-1 text-xl">{userData.calefaccionOffset}</td>
                                 <td className="p-0 text-xl">Cº</td>
                                 <td>
-                                    <a href={handleEditUrl('calefaccionOffset')} className="flex bg-blue-600 bg-opacity-30 p-2 mx-auto rounded-xl text-1xl">
+                                    <a href={handleEditUrl('calefaccionOffset')} className="flex items-center justify-center bg-blue-600 bg-opacity-30 p-2 mx-auto w-10 rounded-xl text-1xl">
                                         <PencilIcon className="m-0"/>
                                     </a>
                                 </td>
@@ -56,7 +56,7 @@ export default async function UserData({ searchParams }: UserDataProps) {
                                 <td className="p-1 text-xl">{userData.calefaccionMinima}</td>
                                 <td className="p-0 text-xl">%</td>
                                 <td>
-                                    <a href={handleEditUrl('calefaccionMinima')} className="flex bg-blue-600 bg-opacity-30 p-2 mx-auto rounded-xl text-1xl">
+                                    <a href={handleEditUrl('calefaccionMinima')} className="flex items-center justify-center bg-blue-600 bg-opacity-30 p-2 mx-auto w-10 rounded-xl text-1xl">
                                         <PencilIcon className="m-0"/>
                                     </a>
                                 </td>
@@ -66,7 +66,7 @@ export default async function UserData({ searchParams }: UserDataProps) {
                                 <td className="p-1 text-xl">{userData.calefaccionMaxima}</td>
                                 <td className="p-0 text-xl">%</td>
                                 <td>
-                                    <a href={handleEditUrl('calefaccionMaxima')} className="flex bg-blue-600 bg-opacity-30 p-2 mx-auto rounded-xl text-1xl">
+                                    <a href={handleEditUrl('calefaccionMaxima')} className="flex items-center justify-center bg-blue-600 bg-opacity-30 p-2 mx-auto w-10 rounded-xl text-1xl">
                                         <PencilIcon className="mr-0"/>
                                     </a>
                                 </td>
@@ -76,7 +76,7 @@ export default async function UserData({ searchParams }: UserDataProps) {
                                 <td className="p-1 text-xl">{userData.rango}</td>
                                 <td className="p-0 text-xl">Cº</td>
                                 <td>
-                                    <a href={handleEditUrl('rango')} className="flex bg-blue-600 bg-opacity-30 p-2 mx-auto rounded-xl text-1xl">
+                                    <a href={handleEditUrl('rango')} className="flex items-center justify-center bg-blue-600 bg-opacity-30 p-2 mx-auto w-10 rounded-xl text-1xl">
                                         <PencilIcon className="m-0"/>
                                     </a>
                                 </td>

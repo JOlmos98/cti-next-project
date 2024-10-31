@@ -16,13 +16,13 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "El valor o el ID de usuario no son válidos." }, { status: 400 });
     }
 
-    console.log("2. Parameter es:", parameter, "y formData es:", formData);
+    //console.log("2. Parameter es:", parameter, "y formData es:", formData);
     try {
         // No es necesario volver a construir el FormData aquí si ya tienes el parámetro
         const formDataToUpdate = new FormData();
         formDataToUpdate.append(parameter || "", newValue.toString());
         console.log("formDataToUpdate", formDataToUpdate);
-        console.log("3. Parameter es:", parameter, "y formData es:", formData);
+        //console.log("3. Parameter es:", parameter, "y formData es:", formData);
         // Actualizar el usuario con los valores adecuados
         await updateUser(userId, formDataToUpdate);
         

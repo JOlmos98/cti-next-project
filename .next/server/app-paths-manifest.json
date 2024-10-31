@@ -4,7 +4,7 @@
   "/api/updateValue/route": "app/api/updateValue/route.js",
   "/(general)/userData/page": "app/(general)/userData/page.js",
   "/(general)/changeValue/page": "app/(general)/changeValue/page.js",
+  "/(general)/pricing/page": "app/(general)/pricing/page.js",
   "/(general)/contact/page": "app/(general)/contact/page.js",
-  "/(general)/howtouse/page": "app/(general)/howtouse/page.js",
-  "/(general)/pricing/page": "app/(general)/pricing/page.js"
+  "/(general)/howtouse/page": "app/(general)/howtouse/page.js"
 }
