@@ -115,10 +115,6 @@ export async function updateUser(id: number, data: FormData) {
     }
 }
 
-
-// throw new Error("El valor proporcionado no es un número válido."), console.log("El valor proporcionado no es un número válido.", id, value, parameterValue);
-
-
 /*
 model User {
     id                   Int      @id @default(autoincrement())

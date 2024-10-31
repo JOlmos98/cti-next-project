@@ -1,9 +1,6 @@
 
 export default async function Home() {
 
-  // La función handleSubmit ya no es necesaria aquí
-  // porque se manejará directamente en el endpoint
-
   return (
     <div className="grid grid-rows-[1fr_auto] items-center justify-items-center m-5 font-[family-name:var(--font-geist-sans)]">
       <h1 className="flex p-3 gap-6 rounded-3xl text-8xl">CTIcontrol</h1>
@@ -37,8 +34,6 @@ export default async function Home() {
     </div>
   );
 }
-
-
 
 /*import { redirect } from "next/navigation";
 
