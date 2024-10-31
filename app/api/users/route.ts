@@ -1,13 +1,12 @@
 // app/api/users/route.ts
 
-import { createUser, deleteUser, findUserById } from "@/lib/actions"; // Asegúrate de que la ruta sea correcta
+import { createUser, deleteUser, findUserById } from "@/lib/actions"; 
 import { NextResponse } from "next/server";
 
 // /userData?userId=${encodeURIComponent(userId)}
 // const errorMessage = error instanceof Error ? error.message : "Ocurrió un error inesperado.";
 
 // POST: //
-
 export async function POST(req: Request) {
     const formData = await req.formData();
     const userId = formData.get("userId")?.toString();
@@ -33,11 +32,7 @@ export async function POST(req: Request) {
     }
 }
 
-
-
-
-
-// Método DELETE: Eliminar un usuario
+// Método DELETE: Eliminar un usuario //
 export async function DELETE(req: Request) {
     const { searchParams } = new URL(req.url);
     const idString = searchParams.get("id");

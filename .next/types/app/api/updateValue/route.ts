@@ -1,4 +1,4 @@
-// File: /home/desarrollo1/cti-next-project-server-actions/app/api/updateValue/route.ts
+// File: /home/desarrollo1/cti-next-project-prisma-migrates/app/api/updateValue/route.ts
 import * as entry from '../../../../../app/api/updateValue/route.js'
 import type { NextRequest } from 'next/server.js'
 

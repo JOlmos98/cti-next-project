@@ -17,9 +17,8 @@ export async function findUserById(userId: number) {
 
 // alert("Usuario correcto: " + userId);
 
-// Nueva función en actions.ts
 // Método para obtener los DATOS del usuario: //
-export async function getUserAndConfigData(userId: number) {
+export async function getUserAndConfigData(userId:number) {
     const user = await prisma.user.findUnique({
         where: { id: userId },
         include: { configs: true }, // Incluye las configuraciones del usuario
@@ -66,7 +65,7 @@ export async function deleteUser(id:number){ //El string daba el error, es numbe
 }
 
 // Método de UPDATE: //
-export async function updateUser(id: number, data: FormData) {
+export async function updateUser(id:number, data:FormData) {
     console.log("FormData en updateUser:", Array.from(data.entries()));
     
     // Obtener todos los pares clave-valor del FormData

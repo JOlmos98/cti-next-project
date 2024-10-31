@@ -1,4 +1,4 @@
-// File: /home/desarrollo1/cti-next-project-server-actions/app/(general)/userData/page.tsx
+// File: /home/desarrollo1/cti-next-project-prisma-migrates/app/(general)/userData/page.tsx
 import * as entry from '../../../../../app/(general)/userData/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
