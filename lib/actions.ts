@@ -51,6 +51,7 @@ export async function createUser(data:FormData){
             name,
         },
     });
+    console.log(user);
     return {success:true};
 }
 
@@ -113,6 +114,26 @@ export async function updateUser(id:number, data:FormData) {
         throw new Error("Error al actualizar el usuario en la base de datos");
     }
 }
+
+// Función para mostrar el "prisma migrate status" en la página principal //
+
+import { exec } from "child_process";
+import { promisify } from "util";
+
+const execAsync = promisify(exec);
+
+export async function getMigrationStatus() {
+    try {
+        const { stdout } = await execAsync("npx prisma migrate status");
+        return stdout;
+    } catch (error) {
+        console.error("Error al obtener el estado de migración:", error);
+        throw new Error("No se pudo obtener el estado de las migraciones.");
+    }
+}
+//Esta función ejecuta el comando "npx prisma migrate status" y guarda su salida 
+//en una variable llamada stdout. Luego devuelve esa variable, así podemos usarla como un String.
+
 
 /*
 model User {

@@ -21,6 +21,9 @@ model User {
   calefaccionMaxima    Float    @default(100) // Calefacción máxima en %
   rango                Float    @default(10) // Rango en ºC
   configs              Config[] // Relación uno a muchos con Config, esto se cambiaría y cada usuario solo tiene una configuración.
+  address              String   @default("Sin dirección.")
+  dni                  String   @default("Sin DNI.") 
+  //telefono             String   @default("Sin teléfono.")
 }
 
 model Config {

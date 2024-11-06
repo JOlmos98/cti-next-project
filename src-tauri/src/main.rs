@@ -11,5 +11,4 @@ te genere el código necesario para ejecutar el script de las migraciones de Pri
 
 Tengo que probar tal cual el código de chatGPT e ir analizándolo línea a
 línea porque casi al 100% que dará un error.
-
 */

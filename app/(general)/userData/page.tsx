@@ -2,6 +2,7 @@
 import { getUserAndConfigData } from "@/lib/actions";
 import { PencilIcon } from "@primer/octicons-react";
 import { notFound } from "next/navigation";
+//import { Config } from "tailwindcss";
 
 type UserDataProps = {
     searchParams: { userId: string };
@@ -88,11 +89,7 @@ export default async function UserData({ searchParams }: UserDataProps) {
     
                     {userData.configs && userData.configs.length > 0 ? (
                         <ul className="list-disc pl-8 text-blue-800">
-                            {userData.configs.map((config: any) => (
-                                <li key={config.id} className="py-1">
-                                    {JSON.stringify(config)}
-                                </li>
-                            ))}
+
                         </ul>
                     ) : (
                         <p className="text-left text-blue-600">No hay configuraciones disponibles.</p>
@@ -102,3 +99,13 @@ export default async function UserData({ searchParams }: UserDataProps) {
         </div>
     );
 }
+
+/* Esto va dentro de ul
+
+                            {userData.configs.map((config: ) => (
+                                <li key={config.id} className="py-1">
+                                    {JSON.stringify(config)}
+                                </li>
+                            ))}
+
+*/

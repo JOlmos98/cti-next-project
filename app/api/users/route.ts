@@ -1,6 +1,6 @@
 // app/api/users/route.ts
 
-import { createUser, deleteUser, findUserById } from "@/lib/actions"; 
+import { deleteUser, findUserById } from "@/lib/actions"; 
 import { NextResponse } from "next/server";
 
 // /userData?userId=${encodeURIComponent(userId)}
@@ -46,6 +46,7 @@ export async function DELETE(req: Request) {
         const result = await deleteUser(id);
         return new Response(JSON.stringify(result), { status: 200 }); // Devolver respuesta de éxito
     } catch (error) {
+        console.log(error);
         return new Response("Usuario no encontrado", { status: 404 }); // Manejar el error de usuario no encontrado
     }
 }

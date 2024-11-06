@@ -825,6 +825,14 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.migration-status {
+  padding: 16px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: monospace;
+}
+
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;

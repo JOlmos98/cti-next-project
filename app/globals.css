@@ -25,3 +25,11 @@ body {
     text-wrap: balance;
   }
 }
+
+.migration-status {
+  padding: 16px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: monospace;
+}

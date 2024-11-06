@@ -1,8 +1,30 @@
+import { getMigrationStatus } from "@/lib/actions";
+import Image from "next/image";
 
 export default async function Home() {
 
+
+
+  // XXXXXXXXXXXXXXXXXXX //
+    // Ejecutar la función para obtener el estado de las migraciones
+    let migrationStatus = "";
+    try {
+        migrationStatus = await getMigrationStatus();
+    } catch (error) {
+
+        migrationStatus = "No se pudo obtener el estado de las migraciones:", error;
+    }
+  // XXXXXXXXXXXXXXXXXXX //
+
+
+
   return (
     <div className="grid grid-rows-[1fr_auto] items-center justify-items-center m-5 font-[family-name:var(--font-geist-sans)]">
+                  <script
+                dangerouslySetInnerHTML={{
+                    __html: `alert(${JSON.stringify(migrationStatus)});`,
+                }}
+            />
       <h1 className="flex p-3 gap-6 rounded-3xl text-8xl">CTIcontrol</h1>
       <main className="flex flex-col gap-6 row-start-2 items-center sm:items-start">
         <span className="flex text-3xl">Bienvenido a la interfaz de usuario de [insertar nombre de hardware].</span>
@@ -19,7 +41,6 @@ export default async function Home() {
           <br />
           <button type="submit" className="flex bg-blue-300 bg-opacity-30 p-4 mx-auto rounded-3xl text-3xl">Log in</button>
         </form>
-
         <div className="flex justify-between items-center">
           <div className="flex flex-col gap-4 justify-center">
             <a className="flex bg-blue-300 bg-opacity-30 p-5 m-0 rounded-3xl text-5xl" href="/howtouse">How To Use</a>
@@ -27,7 +48,7 @@ export default async function Home() {
             <a className="flex bg-blue-300 bg-opacity-30 p-5 m-0 rounded-3xl text-5xl" href="/contact">Contact</a>
           </div>
           <div>
-            <img src="/Logo-CTI-png.png" alt="Logo CTIcontrol" className="h-32 w-auto ml-40" />
+            <Image src="/Logo-CTI-png.png"  alt="Logo CTIcontrol" width={500} height={200} className="h-32 w-auto ml-40" />
           </div>
         </div>
       </main>
