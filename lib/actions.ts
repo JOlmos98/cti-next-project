@@ -91,6 +91,7 @@ export async function updateUser(id:number, data:FormData) {
             throw new Error(`Error en lib/actions.ts: El valor proporcionado para ${parameterName} no es un número válido.`);
         }
         
+        
         // Añadir al objeto de actualización
         updateData[parameterName] = value;
     }

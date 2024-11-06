@@ -1,4 +1,5 @@
 // app/userData/page.tsx
+
 import { getUserAndConfigData } from "@/lib/actions";
 import { PencilIcon } from "@primer/octicons-react";
 import { notFound } from "next/navigation";
@@ -9,19 +10,25 @@ type UserDataProps = {
 };
 
 export default async function UserData({ searchParams }: UserDataProps) {
-    const userId = parseInt(searchParams.userId, 10);
-    if (isNaN(userId)) {
+    // Espera a que searchParams se resuelva
+    const { userId } = await searchParams;
+
+    // Procesa userId después de asegurarte de que está disponible
+    const parsedUserId = userId ? parseInt(userId, 10) : 0;
+
+    if (isNaN(parsedUserId)) {
         return notFound(); // Mostrar una página de error si no hay un userId válido
     }
 
     // Llamada del lado del servidor para obtener los datos del usuario
     let userData;
     try {
-        userData = await getUserAndConfigData(userId);
+        userData = await getUserAndConfigData(parsedUserId);
     } catch (error) {
         const errorMessage = error instanceof Error ? error.message : "Ocurrió un error inesperado.";
         return <div>Error: {errorMessage}</div>;
     }
+
     type UserParameters = 'calefaccionOffset' | 'calefaccionMinima' | 'calefaccionMaxima' | 'rango';
 
     const handleEditUrl = (parameter: UserParameters) => {

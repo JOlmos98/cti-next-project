@@ -11,9 +11,9 @@ export async function POST(request: Request) {
     // Asegurarse de que el valor se obtenga correctamente
     const newValue = parseFloat(formData.get(parameter || "")?.toString() || "0");
 
-    if (isNaN(newValue) || isNaN(userId)) {
-        console.log(formData);
-        return NextResponse.json({ error: "El valor o el ID de usuario no son válidos." }, { status: 400 });
+    if (isNaN(newValue) || isNaN(userId)||newValue<0||newValue>100) {
+        console.log("EL FORMDATA: ",formData,"EL NEWVALUE:", newValue,"EL USERID:", userId);
+        return NextResponse.json({ error: "El valor o el ID de usuario no son válidos. Puede que el valor sea alfanumérico o mayor que 100 o menor que 0." }, { status: 400 });
     }
 
     //console.log("2. Parameter es:", parameter, "y formData es:", formData);

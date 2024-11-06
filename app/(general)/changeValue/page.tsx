@@ -3,8 +3,8 @@
 import { CheckIcon, XIcon } from "@primer/octicons-react";
 
 // Componente principal de ChangeValue
-export default function ChangeValue({ searchParams }: { searchParams: { parameter: string; userId: string; value: string } }) {
-    const { parameter, userId, value } = searchParams;
+export default async function ChangeValue({ searchParams }: { searchParams: { parameter: string; userId: string; value: string } }) {
+    const { parameter, userId, value } = await searchParams;
 
     // Convertir el valor a número para mostrar en el input
     const numericValue = parseFloat(value) || 0;
